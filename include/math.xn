@@ -1,0 +1,26 @@
+base exinix;
+
+link exinix::utils::std;
+
+cls Math:
+	pub static void Max(a,b)->return if a >b ? a : b; #method can be public, private, default static
+  public static void Max(a,b)
+	#default entry point
+
+	void call(){
+
+	}
+
+ 	private cls Ambous:
+		void fall()
+ 	__entry__.call()
+
+ 
+
+
+
+ 
+
+
+
+ __export__.Math or __export__.Math(?T,?str,?int ) # if not export it can't be link no public , private, default modifier for class
