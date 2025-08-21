@@ -49,25 +49,73 @@ d:? str = (int) a;
 #logic
   &&, ||, !
 
-[array]
-#List
-name: List[str] = ["",""]
-name: List[int] = [1,2,3,5]
-name: List[str,int, model] = [1,"",2.36] //acept multiple type
+#mybe fun NullSafety
+  var name: str = null; --> remove null keyword
+  int name ??= 0;
+  int length = name.length() ---> NullException
 
-order,changebale,duplicate allow, can access by index
+[array]
+#Member/arraylist
+name: mem[str] = ["",""]
+name: mem[int] = [1,2,3,5]
+name: mem[str,int, model] = [1,"",2.36] //acept multiple type both primitive and non primitive
+
+order,changebale,duplicate allow, can access by index,multiple type, 
 method- > add(at last), get(pos),set(),size()
 
 
-#Set
-name: Set(str) = {"s","hrish"}
-name: Set(int) = 
-unorder, unchangable, duplicate not allow
+#Collection/tuples
+name: coll[str] = ("s","hrish")
+name: coll[int] = (1,2,4)
+name : coll[int,str] = ("jd","ddd",25)
+order, unchangable (immutable) but can added, duplicate allow,can access by index,multiple types
+
+#set
+name : set[str] = {"int", "ddhd"}
+name  :set[int]= {1,2,5,4}
+name : set[int,str,model] = {1,""}
+unorder, unchangeble(immutable) but can added, duplicate not allow, can't access by index,multiple type
+
+#map
+name : map[str,str] = {
+  "hey":"val",
+  1 : "d",
+  
+
+}
+order,changeaable, dupli not allowd, access by key,multitype, can adde
+
+
 
 #set
   part of hashset,treeset,linkedhashset
 #map (dict)
   part of hashmap,treemap,linkedhashmap
+
+
+#pointer & reference
+
+var name : ptr = a
+
+
+[enum are special class type here everything is predefined]
+#enum type cant be initiated
+enum level{
+  EASY,HARD,
+    OR
+  EASY("ob"); ob is the value of consturecture when i call it like Level.Easy.val || Level.Easy.getValue() #output -ob
+  private string final val;
+  
+  Level(String val){
+       this.value = val;
+
+  }
+    public String getValue(){
+        return this.value;
+    }
+
+
+}
 
 [flow control --init-- ]
 
@@ -157,6 +205,116 @@ for (assign once, condition chekeverytime, acrion everytime ){
 
     
   }
+
+
+
+#errorHandling
+  attempt{
+  }failed (e:Error,IOError){
+  
+  }failed (e:ArithmaticError){
+  
+  }passed(){
+    --if atempt--
+  
+  }fallback{
+      --default-pass/fail
+  
+  }
+
+#interface pure-abstract
+effect/guard keyword
+interface should be public,private (inner class /interface)
+
+shared Network{
+  var a : int = 10 # implicitly public, static, final
+  fn dis();  
+  fn dis(a:str, b:int);
+  effect inNetwork{
+    fn dis(a:str)
+  }
+
+  [suported Modifier]
+  class - public 
+  constructure - not allowed
+  var- always public static final
+  method - > default , pub (must not have a body),private (must have body , act as helper ),protected (no allowed reason this is nt extends to child class its impliments so it can hold subclass why why useless protected)
+  
+  
+
+
+}
+
+normal clas > abstract > enum|interface
+
+implement : imply
+
+
+
+
+
+#abstract class [Similar to normal Class but with more function]
+[access Modifier]
+var - pub,pri, protected
+method : pub, pri, protected,abs (No Body)
+construct - public, protected,private ok but if private then can't extends resaon you need constructure in super then you have to call , but private cant call in another class
+cls -normal{
+    abs => '-' symbol abstract class
+}
+
+#outerclass innerclass
+
+cls outer{
+  cls inner{
+  }
+
+}
+var obj : outer = Outer()
+var obj2 : Outer.inner = Outer().inner() #without static
+var obj2 : Outer.inner = Outer.inner() #with static
+
+class outer{
+  protected int x = 10;
+  protected static class inner{
+    protected int y = 100;
+  }
+  protected class normal{
+    protected int z = 4;
+  }
+}
+
+class Main {
+  Outer outer = new Outer();
+  Outer.inner = new Outer.inner() |
+  Outer.normal = new Outer().new normal() | new outer.normal() ok but cant new Outer.normal() | new Outer().normal()
+  
+
+}
+class main extends outer{
+  void dis(){
+    this.x = 45; ok allowded this is object itself of current class means main, which have extends outer also (superclass) ,
+    this.inner = not allowde
+    Outer.normal = this.new normal() ok
+  }
+}
+
+
+#const var and 
+const nm : str = "dd"
+cls imu normal{
+  #imu -keyword for final class not extends
+
+}
+
+fn async call(a:str,b:str)->str{
+  
+
+}
+
+
+
+
+
 
 
   
