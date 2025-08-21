@@ -94,8 +94,28 @@ order,changeaable, dupli not allowd, access by key,multitype, can adde
 
 
 #pointer & reference
+var a :int =10
+var name : ptr = &a
+var name2 : ptr = &name
+var name3 : ptr = &name
 
-var name : ptr = a
+#typedef
+typedef str : String
+typedef oldOne : newOne
+struct mystruct{
+
+};
+struct mystruct s1; -<assign struct
+method1 :
+typedef struct mystruct STR;
+STR s1 = {}
+
+mthod2:
+typedef struct mystruct{
+  
+} STR;
+STR a1 = {}
+  
 
 
 [enum are special class type here everything is predefined]
