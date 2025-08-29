@@ -1,24 +1,33 @@
 [package --init--]
 base packagename;
 
+[special Note]
+; not needed to end the syntax
+
 [accessModifier]
 #class
   public - normal no annotion --> cls myClass{} --> access anywhere
   private - $ ----> class $hiddenClass{} --> outer cls can't insider class can be private , accible inside class itself
+  protected -@ -->accessible only within extends (sub)class
   final - const keyword -> class _finalClass{} --> cant be extends
 
 #attrib/method/construct
   [public -n o annotions]
-  var name : int = 10;
-  fn display(){}
-  construct(a:str,b:int){state.name, }
+  var name = 10
+  var name : int = 10 #for typecast
+  fn display():str{} //method can be void reture so keyword void
+  construct(a,b){state.name, }
+
   
 
 [var --init--]
 #keyword : <outer_scope >{pub , pri ,default} <inner_scope> {stat, const} <name> :? <type> = <value>
 
-var static a: int = 100;
-var b : str = 100;
+var static a: int = 100
+var b : str = 100
+var c = &a //pointer by default &<varname>
+var c : ptr = &a
+var c  = [[1],[]]
 
 
 [comment --init]
