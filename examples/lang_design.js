@@ -1,5 +1,5 @@
 [package --init--]
-base packagename;
+base packagename
 
 [special Note]
 ; not needed to end the syntax
@@ -9,25 +9,55 @@ base packagename;
   public - normal no annotion --> cls myClass{} --> access anywhere
   private - $ ----> class $hiddenClass{} --> outer cls can't insider class can be private , accible inside class itself
   protected -@ -->accessible only within extends (sub)class
-  final - const keyword -> class _finalClass{} --> cant be extends
+  final - const keyword -> cls _finalClass{} --> cant be extends
 
 #attrib/method/construct
   [public -n o annotions]
   var name = 10
   var name : int = 10 #for typecast
   fn display():str{} //method can be void reture so keyword void
-  construct(a,b){state.name, }
+  construct(a,b){this.name = a}
 
+#comment
+  // -> single comment
+  /*multiline comment*/
+
+
+[data types]
+#primitive
+int,float, byte, long, double, char,bool,short
+
+#nonprimitive
+ptr,str,array,mem,coll,set,map
   
 
 [var --init--]
-#keyword : <outer_scope >{pub , pri ,default} <inner_scope> {stat, const} <name> :? <type> = <value>
 
-var static a: int = 100
-var b : str = 100
+const is for constant , not changeable
+var name:type = value // type,value is optional, this is for priitive types data types variable
+var name:supporttype = nonprimitive(value) // supporttype and value is optional
+
+var name //just declaration
+name = 145
+
+var __a: int = 100 //for static variable not belongs to objects ,belong to class so predefine the value is most improntant 
+var __a = 10 //without type declare
+var b : int = 100 //with type declare
+var b = "string" //inline str
+var b = str("string") //with the help of str non primitive data class
+
 var c = &a //pointer by default &<varname>
-var c : ptr = &a
-var c  = [[1],[]]
+var c : ptr = &a //pointer declare with specify datatypes
+
+var c = ptr(a) //with the help of ptr non primitive datatypes
+
+const pi = 3.14 //consttant variable declare
+const pi : float = 3.14 //constat with specify datatype
+
+#typecasting
+var a = 100
+var b : float = a
+  
 
 
 [comment --init]
@@ -35,16 +65,8 @@ var c  = [[1],[]]
 --multiple
   comment --
 
-[data types]
-#primitive
-int,float, byte, long, double, char,bool,short
 
-#nonprimitive
-str
 
-[typecasting]
-d:? str = a; #autometic cast
-d:? str = (int) a;
 
 [operator]
 #arithmatic
@@ -58,89 +80,82 @@ d:? str = (int) a;
 #logic
   &&, ||, !
 
-#mybe fun NullSafety
-  var name: str = null; --> remove null keyword
-  int name ??= 0;
-  int length = name.length() ---> NullException
+  
+
+#maybe operator NullSafety
+  var name: int = null; --> remove null keyword
+  int name ??: = 0; // maybe operator ??: if name == null then 0 is assign to variable
+  
 
 [array]
-#Member/arraylist
-name: mem[str] = ["",""]
-name: mem[int] = [1,2,3,5]
-name: mem[str,int, model] = [1,"",2.36] //acept multiple type both primitive and non primitive
+
+var ar1 = []
+var ar2 : int = [] //with datatypes
+var v3 = [[1,2,3],[4,5,6]] //multidimentional arrays (2,3)
+v3[0][1] = 4 //changes the data
+
+some psecial case allowded here
+var jagged = [[1,2],[3,4,5]] // this is allowed here jagged array
+
+some rules of array :
+1.array has fixed length/capacity
+2.it can not be added/removed
+3. can be changed with index no
+
+#Member/same as python list but has some difference
+var name  = mem() //acept multiple type both primitive and non primitive accept all types
+var name : str = mem() //aceppt only str data types
+var name : str,int = mem() // acept only str,int
 
 order,changebale,duplicate allow, can access by index,multiple type, 
-method- > add(at last), get(pos),set(),size()
+method- > add(at last), get(pos),set(pos),size()
 
 
 #Collection/tuples
-name: coll[str] = ("s","hrish")
-name: coll[int] = (1,2,4)
-name : coll[int,str] = ("jd","ddd",25)
-order, unchangable (immutable) but can added, duplicate allow,can access by index,multiple types
+var name = coll() //acept multiple type both primitive and non primitive accept all types
+var name  :str = coll() // accept only str
+var name  :str,int = coll() // accept only str,int
+order, unchangable (immutable) but can added, duplicate allow,can access by index,multiple types allowed
 
 #set
-name : set[str] = {"int", "ddhd"}
-name  :set[int]= {1,2,5,4}
-name : set[int,str,model] = {1,""}
-unorder, unchangeble(immutable) but can added, duplicate not allow, can't access by index,multiple type
+var name = set() ////acept multiple type both primitive and non primitive accept all types
+var name : str,int = set() //accept only str,int
+
+unorder, unchangeble(immutable) but can added, duplicate not allow, can't access by index,multiple type allowed
 
 #map
-name : map[str,str] = {
-  "hey":"val",
-  1 : "d",
-  
-
-}
+var name = map({"key","val"})// inline declaration in map class it accept set means mapobject can only accept set object as constructure
+var name :<str,int> = map() // accept key as only str and value as only int
 order,changeaable, dupli not allowd, access by key,multitype, can adde
 
 
 
-#set
-  part of hashset,treeset,linkedhashset
-#map (dict)
-  part of hashmap,treemap,linkedhashmap
 
 
-#pointer & reference
-var a :int =10
-var name : ptr = &a
-var name2 : ptr = &name
-var name3 : ptr = &name
+#typedef type define
+typedef str as String
+typedef str  : String
+typedef oldOne : newOne 
 
-#typedef
-typedef str : String
-typedef oldOne : newOne
-struct mystruct{
 
-};
-struct mystruct s1; -<assign struct
-method1 :
-typedef struct mystruct STR;
-STR s1 = {}
-
-mthod2:
-typedef struct mystruct{
-  
-} STR;
-STR a1 = {}
   
 
 
 [enum are special class type here everything is predefined]
 #enum type cant be initiated
-enum level{
+enum constants are public, static and final
+enum Level{
   EASY,HARD,
     OR
   EASY("ob"); ob is the value of consturecture when i call it like Level.Easy.val || Level.Easy.getValue() #output -ob
-  private string final val;
+  const $value //by default this is final can't be chhaged
   
-  Level(String val){
-       this.value = val;
+  __construct__(val){
+       __its__.value = val;
 
   }
-    public String getValue(){
-        return this.value;
+    fn getValue(){
+        return __its__.value;
     }
 
 
@@ -161,15 +176,16 @@ if(a > b) {
 }else{
 }
 
-#ternary 
-  va:? bool = (condition) ? True : False
+#ternary operation
+  var name: bool = (condition) ? True : False
+  var bame = (conditons) > True:False
 
 #switch
   select(Object){
     option 1:
-        break;
+        break
     option 2:
-        break;
+        break
     default:
 
 }
@@ -182,30 +198,33 @@ do {
 }while();
 
 #for
-for (assign once, condition chekeverytime, acrion everytime ){
+for (assign once, condition chekeverytime, acrion everytime){
 }
 
 #break loop
-  break; 
-#next
-  next;
+  break
+#next/continue
+  next
 
 #lambda_function
-  public c = (args) => :?int {action}
-  void
-  call -> c (args)
+  var name = (args) : str => action //keep in mind lambda function need explicit return type its mandatory without {}
+  var name : int = (args) : float => action ///here return type is float but i typast it directly into int
+  var name : int = (args): float => {if(args){return 10.2}else{return 20.3}} //with {} and return statement
 
-#function
+#function return type mandatory and fn keyword needed
 
-  fn display (a:str,b:str) ->int{
+  fn display (a,b):int{
     return 1;
   
   }
+  fn display(A,b){} //return nothing void not return anything
+  fn display(a,b):void{} //same as return null
 
-  var ab = display(a,b);
+  var ab = display(a,b)
 
+[OOP]
 #classObject
-  imu cls MyClass{
+cls MyClass{
     var x : int; #public
     var @name :str; #protected
     var $age : int; #private
@@ -222,18 +241,6 @@ for (assign once, condition chekeverytime, acrion everytime ){
   final myObj = MyClass();
   Obj cl = MyClass<str, int>()
 
-#classwithTypes
-  cls mClass<T,Q,V>{
-    var p: T;
-    var r : Q;
-    var s:V;
-    __construct__(p:T,q:Q,r:V){
-      this.p = p;
-      thi
-    }
-
-    
-  }
 
 
 
@@ -251,16 +258,16 @@ for (assign once, condition chekeverytime, acrion everytime ){
   
   }
 
-#interface pure-abstract
-effect/guard keyword
+#interface pure-abstract immutable class
+with guard keyword
 interface should be public,private (inner class /interface)
 
-shared Network{
+imu Network{
   var a : int = 10 # implicitly public, static, final
-  fn dis();  
-  fn dis(a:str, b:int);
-  effect inNetwork{
-    fn dis(a:str)
+  fn dis() 
+  fn dis(a, b)
+  imu inNetwork{
+    fn dis(a)
   }
 
   [suported Modifier]
@@ -276,21 +283,32 @@ shared Network{
 
 normal clas > abstract > enum|interface
 
-implement : imply
+implement of immutable/interface class-> with __guard__
+cls sub : sup{
+
+  __guard__(imu1,imu2){
+    //their methods and variable, and work with multiple interface
+  }
+  var interface : imutype = __guard__(imu1){
+    can work with only one
+    
+  }
+}
 
 
 
 
 
-#abstract class [Similar to normal Class but with more function]
+#abstract class [Similar to normal Class but with more function] or mutable class act as abstract class keyword mut
 [access Modifier]
 var - pub,pri, protected
 method : pub, pri, protected,abs (No Body)
 construct - public, protected,private ok but if private then can't extends resaon you need constructure in super then you have to call , but private cant call in another class
-cls -normal{
-    abs => '-' symbol abstract class
+mut normal{
+    
 }
 
+[normal Class]
 #outerclass innerclass
 
 cls outer{
@@ -298,48 +316,68 @@ cls outer{
   }
 
 }
-var obj : outer = Outer()
+#object creation
+var obj : outer = Outer() //with specify reference type create object
+var obj = Outer() // without specify reference type
 var obj2 : Outer.inner = Outer().inner() #without static
 var obj2 : Outer.inner = Outer.inner() #with static
 
-class outer{
-  protected int x = 10;
-  protected static class inner{
-    protected int y = 100;
+static keyword defined as ---> __varname__ or __cls__ for classes
+cls outer{
+  var @x = 10
+  __cls @inner{
+    var @y = 100
   }
-  protected class normal{
-    protected int z = 4;
+  cls @normal{
+    var @z = 4
   }
 }
 
-class Main {
-  Outer outer = new Outer();
-  Outer.inner = new Outer.inner() |
-  Outer.normal = new Outer().new normal() | new outer.normal() ok but cant new Outer.normal() | new Outer().normal()
+cls Main {
+  var outer = Outer()
+  var inner = Outer.inner() //direct static class inside Outer Class
+  var normal = Outer().normal()
   
 
 }
-class main extends outer{
-  void dis(){
-    this.x = 45; ok allowded this is object itself of current class means main, which have extends outer also (superclass) ,
-    this.inner = not allowde
-    Outer.normal = this.new normal() ok
+cls main : outer{
+  void __dis(){
+    __its__.x = 45; ok allowded this is object itself of current class means main, which have extends outer also (superclass) ,
+    
   }
 }
 
 
-#const var and 
-const nm : str = "dd"
-cls imu normal{
-  #imu -keyword for final class not extends
-
-}
-
-fn async call(a:str,b:str)->str{
+[final class that can be extended ]
+!!cls normal{
   
 
 }
 
+[async function]
+fn async call(a,b)->str{
+  
+
+}
+
+
+keyword and annotion
+public -> 
+private -> $
+proteted -> @
+extends -> :
+  static -> __ example for class __cls for variable var __name = 11
+final -> !!
+
+some keywords :
+int,float,bool,char, byte, long, double,short,ptr,str,array,mem,coll,set,map,async,cls,await,if,else,do,while,for,select,option,base,const,var,
+typedef,imu,mut,break,next,attempt,failed,passed,fallback,enum,use,return,volatile,synchronized,void,fn,transient,raise,from,as,assert;
+
+special method/class
+__construct__,__its__,__guard__
+
+
+  
 
 
 
