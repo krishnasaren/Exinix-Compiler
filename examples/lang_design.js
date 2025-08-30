@@ -2,14 +2,45 @@
 base packagename
 
 [special Note]
-; not needed to end the syntax
+; not needed to end the syntax its optional
+
+variable and class name rules
+1.var and class name are case sensitive
+2.must be start with alphabet
+3. allowed A-Z a-z 0-9 and _ only
+3.starting nameshould be letter or _ can't be number and symbol except_
+4. no black space allowed
+5.reserved keyword not allowed here
+
 
 [accessModifier]
+
+#access-modifiers
+public -> no extra symbol just simple,private -> $,protected-> @ [both for class and method/var/etc]
+non-accessmodifiers
+final -> !! (class) and const keyword for variale
+static -> static //explicitly needed to define
+var static name = 10
+cls static !!$nmae{
+  
+}
+
 #class
   public - normal no annotion --> cls myClass{} --> access anywhere
-  private - $ ----> class $hiddenClass{} --> outer cls can't insider class can be private , accible inside class itself
+  private - $ ----> cls $hiddenClass{} --> outer cls can't insider class can be private , accssible inside class itself
   protected -@ -->accessible only within extends (sub)class
-  final - const keyword -> cls _finalClass{} --> cant be extends
+  final  - !! -> const keyword for variable -> cls !!finalClass{} --> cant be extends
+
+[outer class modifier]
+#allowed
+1.public - > cls myClass{} //its access modifier control access-level
+2.final -> cls !myclass{} //non-access modifier only gives functionality not controll access level
+#not allowed
+1.private -> $
+2.static -> static
+3.protected -> @
+
+
 
 #attrib/method/construct
   [public -n o annotions]
@@ -84,7 +115,7 @@ var b : float = a
 
 #maybe operator NullSafety
   var name: int = null; --> remove null keyword
-  int name ??: = 0; // maybe operator ??: if name == null then 0 is assign to variable
+  int name ?? = 0; // maybe operator ??: if name == null then 0 is assign to variable
   
 
 [array]
@@ -172,7 +203,7 @@ if (a>b) {
 }
 
 if(a > b) {
-}elif(conditon){
+}else if(conditon){
 }else{
 }
 
@@ -238,8 +269,7 @@ cls MyClass{
 
   }
 
-  final myObj = MyClass();
-  Obj cl = MyClass<str, int>()
+
 
 
 
@@ -349,7 +379,7 @@ cls main : outer{
 
 
 [final class that can be extended ]
-!!cls normal{
+cls !normal{
   
 
 }
@@ -371,7 +401,7 @@ final -> !!
 
 some keywords :
 int,float,bool,char, byte, long, double,short,ptr,str,array,mem,coll,set,map,async,cls,await,if,else,do,while,for,select,option,base,const,var,
-typedef,imu,mut,break,next,attempt,failed,passed,fallback,enum,use,return,volatile,synchronized,void,fn,transient,raise,from,as,assert;
+typedef,imu,mut,break,next,attempt,failed,passed,fallback,enum,use,return,volatile,synchronized,void,fn,transient,raise,from,as,assert,static,default;
 
 special method/class
 __construct__,__its__,__guard__
