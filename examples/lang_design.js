@@ -71,8 +71,8 @@ var name:supporttype = nonprimitive(value) // supporttype and value is optional
 var name //just declaration
 name = 145
 
-var __a: int = 100 //for static variable not belongs to objects ,belong to class so predefine the value is most improntant 
-var __a = 10 //without type declare
+var static a: int = 100 //for static variable not belongs to objects ,belong to class so predefine the value is most improntant 
+var static a = 10 //without type declare
 var b : int = 100 //with type declare
 var b = "string" //inline str
 var b = str("string") //with the help of str non primitive data class
@@ -186,7 +186,7 @@ enum Level{
 
   }
     fn getValue(){
-        return __its__.value;
+        return its.value;
     }
 
 
@@ -261,8 +261,8 @@ cls MyClass{
     var $age : int; #private
     
     __construct__(name : str, age :int){
-          __self__.name = name;
-          this.age = age;
+          its.name = name;
+          its.age = age;
     }
     fn $show(a:str, b:str){
     }
@@ -352,10 +352,10 @@ var obj = Outer() // without specify reference type
 var obj2 : Outer.inner = Outer().inner() #without static
 var obj2 : Outer.inner = Outer.inner() #with static
 
-static keyword defined as ---> __varname__ or __cls__ for classes
+static keyword defined as ---> static
 cls outer{
   var @x = 10
-  __cls @inner{
+  cls static @inner{
     var @y = 100
   }
   cls @normal{
@@ -372,7 +372,7 @@ cls Main {
 }
 cls main : outer{
   void __dis(){
-    __its__.x = 45; ok allowded this is object itself of current class means main, which have extends outer also (superclass) ,
+    its.x = 45; ok allowded this is object itself of current class means main, which have extends outer also (superclass) ,
     
   }
 }
@@ -396,12 +396,12 @@ public ->
 private -> $
 proteted -> @
 extends -> :
-  static -> __ example for class __cls for variable var __name = 11
+static -> static
 final -> !!
 
 some keywords :
 int,float,bool,char, byte, long, double,short,ptr,str,array,mem,coll,set,map,async,cls,await,if,else,do,while,for,select,option,base,const,var,
-typedef,imu,mut,break,next,attempt,failed,passed,fallback,enum,use,return,volatile,synchronized,void,fn,transient,raise,from,as,assert,static,default;
+typedef,imu,mut,break,next,attempt,failed,passed,fallback,enum,use,return,volatile,synchronized,void,fn,transient,raise,from,as,assert,static,default,its;
 
 special method/class
 __construct__,__its__,__guard__
