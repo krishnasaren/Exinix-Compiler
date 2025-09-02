@@ -133,19 +133,19 @@ some rules of array :
 2.it can not be added/removed
 3. can be changed with index no
 
-#Member/same as python list but has some difference
-var name  = mem() //acept multiple type both primitive and non primitive accept all types
-var name : str = mem() //aceppt only str data types
-var name : str,int = mem() // acept only str,int
+#coll/same as python list but has some difference
+var name  = coll() //acept multiple type both primitive and non primitive accept all types
+var name : str = coll() //aceppt only str data types
+var name : str,int = coll() // acept only str,int
 
 order,changebale,duplicate allow, can access by index,multiple type, 
 method- > add(at last), get(pos),set(pos),size()
 
 
-#Collection/tuples
-var name = coll() //acept multiple type both primitive and non primitive accept all types
-var name  :str = coll() // accept only str
-var name  :str,int = coll() // accept only str,int
+#Member/tuples
+var name = mem() //acept multiple type both primitive and non primitive accept all types
+var name  :str = mem() // accept only str
+var name  :str,int = mem() // accept only str,int
 order, unchangable (immutable) but can added, duplicate allow,can access by index,multiple types allowed
 
 #set
